@@ -39,11 +39,19 @@ SELECT * FROM spending ORDER BY amount ASC;
 */
 
 
--- Expenses with amount greater than 10
+--Expenses with amount greater than 10
 SELECT * FROM spending WHERE transaction_type = 'expense' and amount > 10;
+/*
+╭────┬────────────┬───────────────┬──────────┬────────┬──────────────────╮
+│ id │    date    │  description  │ category │ amount │ transaction_type │
+╞════╪════════════╪═══════════════╪══════════╪════════╪══════════════════╡
+│  1 │ 2026-07-07 │ iFood order   │ Food     │   45.9 │ expense          │
+│  4 │ 2026-07-07 │ Skin Valorant │ Leisure  │    100 │ expense          │
+╰────┴────────────┴───────────────┴──────────┴────────┴──────────────────╯
+*/
 
 
--- Categories with total spending greater than 10
+--Categories with total spending greater than 10
 SELECT category, SUM(amount)FROM spending WHERE transaction_type = 'expense' GROUP BY category HAVING SUM(amount) > 10;
 /*
 ╭──────────┬─────────────╮
