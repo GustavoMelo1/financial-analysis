@@ -1,5 +1,4 @@
-
--- Total amount spent
+--Total amount spent
 SELECT SUM(amount) FROM spending WHERE transaction_type = 'expense';
 
 /*
@@ -11,7 +10,7 @@ SELECT SUM(amount) FROM spending WHERE transaction_type = 'expense';
 */
 
 
--- Amount spent by category
+--Amount spent by category
 SELECT SUM(amount), category FROM spending WHERE transaction_type = 'expense' GROUP BY category;
 
 /*
@@ -24,7 +23,8 @@ SELECT SUM(amount), category FROM spending WHERE transaction_type = 'expense' GR
 ╰─────────────┴───────────╯
 */
 
--- All transactions ordered by amount (ascending)
+
+--All transactions ordered by amount (ascending)
 SELECT * FROM spending ORDER BY amount ASC;
 /*
 ╭────┬────────────┬───────────────┬───────────┬────────┬──────────────────╮
@@ -38,3 +38,18 @@ SELECT * FROM spending ORDER BY amount ASC;
 ╰────┴────────────┴───────────────┴───────────┴────────┴──────────────────╯
 */
 
+
+-- Expenses with amount greater than 10
+SELECT * FROM spending WHERE transaction_type = 'expense' and amount > 10;
+
+
+-- Categories with total spending greater than 10
+SELECT category, SUM(amount)FROM spending WHERE transaction_type = 'expense' GROUP BY category HAVING SUM(amount) > 10;
+/*
+╭──────────┬─────────────╮
+│ category │ SUM(amount) │
+╞══════════╪═════════════╡
+│ Food     │        55.9 │
+│ Leisure  │         100 │
+╰──────────┴─────────────╯
+*/
