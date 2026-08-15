@@ -61,3 +61,5 @@ SELECT category, SUM(amount)FROM spending WHERE transaction_type = 'expense' GRO
 │ Leisure  │         100 │
 ╰──────────┴─────────────╯
 */
+
+SELECT description, category, amount, SUM(amount) OVER(PARTITION BY category) FROM spending WHERE transaction_type = 'expense';
