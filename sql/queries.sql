@@ -62,7 +62,7 @@ SELECT category, SUM(amount)FROM spending WHERE transaction_type = 'expense' GRO
 ╰──────────┴─────────────╯
 */
 
--- Each expense with the total spent in its category, keeping every row (window function, not GROUP BY)
+--Each expense with the total spent in its category, keeping every row (window function, not GROUP BY)
 SELECT description, category, amount, SUM(amount) OVER(PARTITION BY category) FROM spending WHERE transaction_type = 'expense';
 /*
 ╭───────────────┬───────────┬────────┬─────────────────────────────────────────╮
